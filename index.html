@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ang Panha - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0cd5198f8f.js" crossorigin="anonymous"></script>
+    <style>
+        .press-start-2p { 
+            font-family: "Press Start 2P", cursive;
+        }
+        .roboto-mono {
+            font-family: "Roboto Mono", monospace;
+        }
+        .hexagon-1 {
+            clip-path: polygon(
+            25% 0%, 75% 0%,
+            100% 50%, 75% 100%,
+            25% 100%, 0% 50%
+            );
+        }
+        .hexagon {
+            background-color: white;
+            clip-path: polygon(
+                50% 0%,
+                100% 25%,
+                100% 75%,
+                50% 100%,
+                0% 75%,
+                0% 25%
+            );
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.75); /* dark semi-transparent */
+        }
+        .second-row {
+            transform: translateY(-25%);
+        }
+        .third-row {
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-[#DE99B6] m-2 flex flex-col gap-5">
+        <div class="bg-[#0008] text-white px-5 py-2 rounded-3xl fixed left-2 right-2">
+            <ul class="flex gap-20 justify-center items-center">
+                <li class="mr-auto press-start-2p">Ascendant</li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#project">Project</a></li>
+                <li class="ml-auto"><a href="https://github.com/Ascendant-7"><i class="fa-brands fa-github text-4xl"></i></a></li>
+            </ul>
+        </div>
+        <div class="w-full h-16"></div>
+        <div id="home" class="bg-[url('city-bg.jpg')] p-5 flex items-center justify-center">
+            <div class="bg-[#0008] w-1/2 text-white p-5 rounded-3xl flex flex-col gap-5">
+                <div>
+                    <div class="roboto-mono">Nice to meet you! I'm Panha,</div>
+                    <div class="roboto-mono text-5xl">a Game Developer</div>
+                </div>
+                <div id="skill-hive" class="flex flex-col gap-2"></div>
+            </div>
+        </div>
+        <div id="about" class="bg-[#6F4D5B] text-white p-5 rounded-xl">
+            <h1 class="text-4xl press-start-2p">About</h1>
+            <br>
+            <pre class="whitespace-pre-wrap roboto-mono">  
+        I’m a freelance game developer from Phnom Penh, specializing in <span class="bg-white text-red-400 font-bold px-2 rounded-md">2D games</span> built with the libraries and engines listed above. I’m strongest at <span class="bg-white text-red-400 font-bold px-2 rounded-md">prototyping</span> and testing <span class="bg-white text-red-400 font-bold px-2 rounded-md">game mechanics</span>, with a bit of design skill as well. I thrive in passionate teams and enjoy bringing ideas to life through collaboration.
+
+        I’m a laid-back, curious guy who keeps things light to make the games I work on feel alive and engaging. While I enjoy a relaxed approach, I know when to focus and be professional to get things done.
+
+        I’m deeply interested in the gaming industry and community — I love both playing and making games in my free time. One of my best traits is that I’m studious and always eager to dive deep into topics that spark my interest.</pre>
+        </div>
+        <figure class="m-auto">
+            <img src="game.JPG" alt="suon" class="rounded-xl">
+            <figcaption class="italic text-center roboto-mono">Suon - made with java swing</figcaption>
+        </figure>
+        <div id="project" class="bg-[#6F4D5B] text-white p-5 rounded-xl roboto-mono">
+            <h1 class="text-4xl press-start-2p">Project</h1>
+            <br>
+            <p>
+                Role: Lead Developer<br>
+                Goal: Create a fun and immersive maze game<br>
+                Process: used only Java AWT/Swing, Python for testing but not included in the game code.<br>
+                Steps Taken:<br>
+                <ol class="list-decimal list-inside">
+                    <li>Visualize the goals and obstacles of the game</li>
+                    <li>Build on the classic Swing framework.</li>
+                    <li>Simulate the tools that are appropriate to game development.</li>
+                    <li>These includes sprite rendering, animations, game logic and mechanics, collisions, state switching and more.</li>
+                    <li>Test run.</li>
+                    <li>Deploy.</li>
+                </ol><br>
+                You can check out the game on <a href="https://github.com/Ascendant-7/Suon" class="hover:underline">Ascendant-7/Suon</a>
+            </p>
+        </div>
+        
+    </div>
+    <div class="bg-[#6F4D5B] p-10 text-center text-white roboto-mono">
+        Designed and Built by Ang Panha
+    </div>
+    <script>
+        const iconRow1 = {
+            csharp: "C#",
+            java: "Java",
+            python: "Python"
+        }
+        const iconRow2 = {
+            dotnet: ".NET",
+            java_swing: "Swing",
+            pygame: "Pygame",
+            mongodb: "MongoDB",
+        }
+        const iconRow3 = {
+            unity: "Unity",
+            libgdx: "LibGDX",
+            flask: "Flask"
+        }
+        let hiveRowCount = 0;
+        let hive = document.querySelector("#skill-hive");
+        hive.innerHTML = getHiveRow(iconRow1) + getHiveRow(iconRow2) + getHiveRow(iconRow3);
+        function getCurrentYTranslation() {
+            const translatePercent = hiveRowCount * 25;
+            return `translateY(-${translatePercent}%)`;
+        }
+        function getHex(icon, name) {
+            return `<div id="${icon}-hex" class="w-24 h-24 hexagon relative flex justify-center items-center"
+                        style="transform: ${getCurrentYTranslation()}">
+                        <figure class="absolute inset-0 z-0 flex justify-center items-center">
+                            <img src="${icon}-logo.png" alt="C# Logo" class="w-auto h-auto max-w-full max-h-full">
+                        </figure>
+                        <div class="opacity-0 hover:opacity-100 transtion-opacity duration-300">
+                            <div id="${icon}-overlay" class="overlay absolute inset-0 z-10"></div>
+                            <div class="roboto-mono absolute inset-0 z-20 flex justify-center items-center text-white font-bold text-lg">
+                                ${name}
+                            </div>
+                        </div>
+                    </div>`;
+        }
+        function getHiveRow(icons) {
+            let hive = "";
+            for (const icon in icons) {
+                hive += getHex(icon, icons[icon]);
+            }
+            let container = `<div class="flex gap-2 justify-center">` + hive + `</div>`;
+            hiveRowCount++;
+            return container;
+        }
+
+    </script>
+</body>
+
+</html>
